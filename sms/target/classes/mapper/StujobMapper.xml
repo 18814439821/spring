@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sms.sms.mapper.StujobMapper">
+    <select id="pageCC" resultType="com.sms.sms.entity.StujobResult">
+        SELECT s.id as stuId,j.id as jobId,s.name,s.no,j.job_name,j.principal,j.phone,sb.id as id
+        FROM stujob as sb ,job as j ,stu as s
+--         where sb.job=j.id and sb.stu=s.id
+        ${ew.customSqlSegment}
+    </select>
+    <delete id="removeByStuId">
+        delete from stujob ${ew.customSqlSegment}
+    </delete>
+</mapper>

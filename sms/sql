@@ -1,0 +1,44 @@
+create database sms
+
+create table user (
+    id int not null PRIMARY KEY auto_increment COMMENT '主键',
+    no varchar(20) not null comment '账号',
+    name varchar(100) not null comment '姓名',
+    password varchar(20) not null comment '密码',
+    phone varchar(20) not null comment '电话',
+    role_id int not null comment '角色 0超级管理员 1管理员 3普通账号',
+    is_valid varchar(4) default 'Y' not null comment '是否有效，Y有效，其他无效'
+)
+
+CREATE TABLE stu (
+	id INT NOT NULL PRIMARY KEY auto_increment COMMENT '主键',
+	no VARCHAR ( 20 ) NOT NULL COMMENT '学号',
+	-- 基本信息
+	phone VARCHAR ( 20 ) NOT NULL COMMENT '联系电话',
+	name VARCHAR ( 255 ) NOT NULL COMMENT '姓名',
+	gender VARCHAR ( 20 ) NOT NULL COMMENT '性别',
+	birth_date DATE NOT NULL COMMENT '出生日期',
+	birth_place VARCHAR ( 255 ) NOT NULL COMMENT '出生地',
+	native_place VARCHAR ( 255 ) NOT NULL COMMENT '籍贯',
+	ethnic_group VARCHAR ( 50 ) NOT NULL COMMENT '民族',
+	nationality_region VARCHAR ( 50 ) NOT NULL COMMENT '国籍/地区',
+	annual_household_income int not null comment '家庭年收入',
+
+	-- 学籍信息
+	grade VARCHAR(50) NOT NULL COMMENT '年级',
+	class_name VARCHAR(50) NOT NULL COMMENT '班级',
+
+	-- 地址信息
+	current_residence VARCHAR(255) NOT NULL COMMENT '现住址',
+	mailing_address VARCHAR(255) NOT NULL COMMENT '通信地址',
+	family_address VARCHAR(255) NOT NULL COMMENT '家庭地址',
+
+	-- 其他信息
+	special_group varchar(255) default 'null' not null comment '特殊群体',
+	emergency_situation varchar(255) default 'null' not null comment '突发状况',
+	is_poor_student VARCHAR ( 4 ) DEFAULT 'N' NOT NULL COMMENT '是否为贫困生，N为否，其他为是' ,
+	is_valid VARCHAR ( 4 ) DEFAULT 'Y' NOT NULL COMMENT '是否在校，Y在校，其他为已毕业'
+)
+
+
+ALTER TABLE `stu` ADD CONSTRAINT `job` FOREIGN KEY (`job`) REFERENCES `job` (`id`);
